@@ -1,16 +1,14 @@
 {
   "files": {
-    "main.css": "/musict/static/css/main.71003f81.css",
-    "main.js": "/musict/static/js/main.15251546.js",
+    "main.css": "/musict/static/css/main.7bb697d9.css",
+    "main.js": "/musict/static/js/main.536bedcf.js",
     "static/media/logo.png": "/musict/static/media/logo.5f7567fa155a616147a2.png",
     "static/media/loader1.svg": "/musict/static/media/loader1.a2334c1f2f4ff3a428edf749ddb59926.svg",
     "index.html": "/musict/index.html",
-    "static/media/fullscreen.svg": "/musict/static/media/fullscreen.ab99f08880024e1b2d773e30d327b28f.svg",
-    "main.71003f81.css.map": "/musict/static/css/main.71003f81.css.map",
-    "main.15251546.js.map": "/musict/static/js/main.15251546.js.map"
+    "static/media/fullscreen.svg": "/musict/static/media/fullscreen.ab99f08880024e1b2d773e30d327b28f.svg"
   },
   "entrypoints": [
-    "static/css/main.71003f81.css",
-    "static/js/main.15251546.js"
+    "static/css/main.7bb697d9.css",
+    "static/js/main.536bedcf.js"
   ]
 }
