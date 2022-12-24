@@ -31,7 +31,7 @@ const Discover = () => {
           value={genreListId || "pop"}
           className="bg-neutral-800 text-gray-300 text-sm rounded-2xl outline-none sm:mt-0 mt-5 p-1 pr-4"
         >
-          {genres.map((genre) => (
+          {genres?.map((genre) => (
             <option value={genre.value}>{genre.title}</option>
           ))}
         </select>

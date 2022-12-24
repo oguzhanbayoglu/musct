@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 function DetailsHeader({ artistId, artistData, songData }) {
-  const artist = artistData?.artists[artistId].attributes;
-
+  const artist = artistData?.data.views;
+  console.log(artist);
   return (
     <div className="relative w-full flex flex-col my-8">
       <div className=" inset-0 flex items-center">

@@ -10,6 +10,7 @@ import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import Loader from "./Loader";
 
 function TopChartCard({
   song,
@@ -20,47 +21,50 @@ function TopChartCard({
   handlePauseClick,
   handlePlayClick,
 }) {
-  return (
-    <div className="w-full flex flex-row items-center hover:bg-[#424242] p-2 rounded-2xl cursor-pointer mb-2 justify-between">
-      <div className="felx-1 flex flex-row justify-between items-center gap-2">
-        <img
-          src={song?.images?.coverart}
-          alt="cover"
-          className="rounded-xl w-12 h-12"
-        />
-        <div className="flex-1 flex flex-col justify-center mx-3 ">
-          <Link to={`/musict/songs/${song.key}`}>
-            <p className="text-white font-bold">{song?.title}</p>
-          </Link>
-          <Link to={`/musict/artists/${song?.artists[0].adamid}`}>
-            <p className="text-gray-500 text-sm font-bold mt-1">
-              {song?.subtitle}
-            </p>
-          </Link>
+  if (song?.images?.coverart)
+    return (
+      <div className="w-full flex flex-row items-center hover:bg-[#424242] p-2 rounded-2xl cursor-pointer mb-2 justify-between">
+        <div className="felx-1 flex flex-row justify-between items-center gap-2">
+          <img
+            src={song?.images?.coverart}
+            alt="cover"
+            className="rounded-xl w-12 h-12"
+          />
+          <div className="flex-1 flex flex-col justify-center mx-3 ">
+            <Link to={`/musict/songs/${song.key}`}>
+              <p className="text-white font-bold">{song?.title}</p>
+            </Link>
+            <Link to={`/musict/artists/`}>
+              <p className="text-gray-500 text-sm font-bold mt-1">
+                {song?.subtitle}
+              </p>
+            </Link>
+          </div>
         </div>
+        <PlayPause
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+          song={song}
+          handlePause={handlePauseClick}
+          handlePlay={() => handlePlayClick(song, i)}
+        />
       </div>
-      <PlayPause
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        song={song}
-        handlePause={handlePauseClick}
-        handlePlay={() => handlePlayClick(song, i)}
-      />
-    </div>
-  );
+    );
 }
 
 function TopPlay() {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetTopChartsQuery();
+  const { data, isFetching } = useGetTopChartsQuery();
   const divRef = useRef(null);
   const topPlays = data?.slice(0, 5);
   const topArtists = data?.slice(0, 15);
 
-  useEffect(() => {
-    divRef.current.scrollIntoView({ behavior: "smooth" });
-  });
+  // !isFetching && console.log(topArtists[0].artists[0]);
+
+  // useEffect(() => {
+  //   divRef.current.scrollIntoView({ behavior: "smooth" });
+  // });
 
   function handlePauseClick() {
     dispatch(playPause(false));
@@ -76,10 +80,10 @@ function TopPlay() {
       ? handlePauseClick()
       : handlePlayClick();
   }
-
+  if (isFetching) return <Loader />;
   return (
     <div
-      ref={divRef}
+      // ref={divRef}
       className=" ml-0 mb-0 flex-1 xl:max-w-[420px] lg:mb-[10rem] max-w-full flex flex-col topPlay hide-scrollbar"
     >
       <div className="w-full flex flex-col border-[1px] border-solid border-neutral-700 p-6 rounded-2xl pl-4">
@@ -91,11 +95,11 @@ function TopPlay() {
         </div>
 
         <div className="mt-4 flex flex-col gap-1">
-          {topPlays?.map((song, i) => (
+          {topPlays?.map((songP, i) => (
             <TopChartCard
-              song={song}
+              song={songP}
               i={i}
-              key={song.key}
+              key={songP.key}
               isPlaying={isPlaying}
               activeSong={activeSong}
               pP={pP}
@@ -123,21 +127,32 @@ function TopPlay() {
             modules={[FreeMode]}
             className="mt-4"
           >
-            {topArtists?.map((song, i) => (
-              <SwiperSlide
-                key={song?.key}
-                style={{ width: "16%", height: "auto" }}
-                className="shadow-lg rounded-full animate-slideright"
-              >
-                <Link to={`/musict/artists/${song?.artists[0].adamid}`}>
-                  <img
-                    src={song?.images.background}
-                    alt="artist"
-                    className="rounded-full w-full object-cover"
-                  />
-                </Link>
-              </SwiperSlide>
-            ))}
+            {isFetching ? (
+              <Loader />
+            ) : (
+              topArtists?.map(
+                (songA, i) =>
+                  songA?.images?.background && (
+                    <SwiperSlide
+                      key={songA?.key}
+                      style={{ width: "16%", height: "auto" }}
+                      className="shadow-lg rounded-full animate-slideright"
+                    >
+                      <Link
+                        to={`/musict/artists/${
+                          songA?.artists ? songA?.artists[0].adamid : ""
+                        }`}
+                      >
+                        <img
+                          src={songA?.images?.background}
+                          alt="artist"
+                          className="rounded-full w-full object-cover"
+                        />
+                      </Link>
+                    </SwiperSlide>
+                  )
+              )
+            )}
           </Swiper>
         </div>
       </div>

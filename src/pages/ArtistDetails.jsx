@@ -19,20 +19,45 @@ const ArtistDetails = () => {
 
   if (error) return <Error />;
 
-  console.log(Object.values(artistData?.songs));
+  console.log(artistData);
+  console.log(artistData.data[0].attributes);
 
   return (
     <div className="flex flex-col">
       <DetailsHeader artistId={artistId} artistData={artistData} />
-
-      <RelatedSongs
-        data={Object.values(artistData?.songs)}
-        artistId={artistId}
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-      />
+      {isFetchingArtistDetails ? (
+        <Loader />
+      ) : (
+        <div>
+          <div className="flex flex-col items-center">
+            <h4 className="text-white italic mb-12">
+              More functions will be added to this page...
+            </h4>
+            <img
+              src={artistData?.data[0]?.attributes?.artwork?.url}
+              alt="artist"
+              className="rounded-full h-48"
+            />
+            <div className="w-[42rem]">
+              <h3 className="text-white font-bold text-3xl mb-4">
+                {artistData?.data[0]?.attributes?.name}
+              </h3>
+              <p className="text-white line-clamp-6 mb-8">
+                {artistData?.data[0]?.attributes?.artistBio}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default ArtistDetails;
+
+// <RelatedSongs
+//   data={Object.values(artistData ? artistData?.data : "")}
+//   artistId={artistId}
+//   isPlaying={isPlaying}
+//   activeSong={activeSong}
+// />

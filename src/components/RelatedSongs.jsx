@@ -9,6 +9,8 @@ function RelatedSongs({
   artistId,
   pP,
 }) {
+  console.log(data);
+
   return (
     <div className="flex flex-col lg:pr-8">
       <h1 className="text-white text-2xl font-bold">Related Songs:</h1>

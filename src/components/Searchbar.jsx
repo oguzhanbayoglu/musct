@@ -52,7 +52,6 @@ const Searchbar = () => {
           <FiSearch aria-hidden="true" className="w-5 h-5 ml-4" />
           <input
             name="search-field"
-            autoComplete
             id="search-field"
             className="flex border-[1px] bg-transparent border-solid border-neutral-700 rounded-[10rem] h-8 ml-4 w-[30rem] placeholder-gray-400 outline-none text-base text-white p-4"
             placeholder="Search"
