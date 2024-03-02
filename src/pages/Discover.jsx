@@ -36,7 +36,7 @@ const Discover = () => {
           ))}
         </select>
       </div>
-      <div className="flex flex-wrap sm:justify-start justify-center gap-5">
+      <div className="flex flex-wrap w-full sm:justify-start justify-center gap-5">
         {data?.map(
           (song, i) =>
             song.images?.coverart && (

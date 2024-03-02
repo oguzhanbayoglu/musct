@@ -34,7 +34,7 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="flex flex-row h-8 w-full justify-start items-center m-4 mt-6 ml-6">
+    <div className="flex flex-row h-8 w-[full] justify-start items-center m-4 mt-6 ml-6">
       <img
         src={logo}
         alt="logo"
@@ -53,7 +53,7 @@ const Searchbar = () => {
           <input
             name="search-field"
             id="search-field"
-            className="flex border-[1px] bg-transparent border-solid border-neutral-700 rounded-[10rem] h-8 ml-4 w-[30rem] placeholder-gray-400 outline-none text-base text-white p-4"
+            className="flex border-[1px] bg-transparent border-solid border-neutral-700 rounded-[10rem] md:w-[30rem] h-8 ml-4 w-[12rem] placeholder-gray-400 outline-none text-base text-white p-4"
             placeholder="Search"
             type="search"
             value={searchTerm}

@@ -84,7 +84,7 @@ function TopPlay() {
   return (
     <div
       // ref={divRef}
-      className=" ml-0 mb-0 flex-1 xl:max-w-[420px] lg:mb-[10rem] max-w-full flex flex-col topPlay hide-scrollbar"
+      className=" ml-0 mb-0 mt-4 md:mt-0 flex-1 xl:max-w-[420px] lg:mb-[10rem] max-w-full flex flex-col topPlay hide-scrollbar"
     >
       <div className="w-full flex flex-col border-[1px] border-solid border-neutral-700 p-6 rounded-2xl pl-4">
         <div className="flex flex-row justify-between items-center">

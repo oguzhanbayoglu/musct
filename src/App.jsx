@@ -18,12 +18,12 @@ const App = () => {
   //bg-gradient-to-br from-[#060606] to-[#1d2c37] pl-2
 
   return (
-    <div className="relative flex bg-[#161616] pl-2">
+    <div className="relative flex bg-[#161616] ">
       <Sidebar />
       <div className="flex-1 flex flex-col bg-[#161616]">
         <Searchbar />
 
-        <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+        <div className="px-2 md:px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/musict" element={<Discover />} />
